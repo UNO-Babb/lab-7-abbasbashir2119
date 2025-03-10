@@ -1,58 +1,47 @@
-#NumberTests.py
+# NumberTests.py
 
 def isThreeOrFive(n):
-  """Returns boolean determination if number is multiple of 3 or 5"""
-
-  if n % 3 == 0 or n % 5 == 0:
-    return True
-  else:
-    return False
+    """Returns boolean determination if number is multiple of 3 or 5"""
+    return n % 3 == 0 or n % 5 == 0
 
 def isPrime(p):
-  """Returns boolean (True/False) if the value given is prime."""
-
-  return True
+    """Returns boolean (True/False) if the value given is prime."""
+    if p < 2:
+        return False
+    for i in range(2, int(p ** 0.5) + 1):
+        if p % i == 0:
+            return False
+    return True
 
 def isEven(n):
-  """Returns boolean about given value being even."""
+    """Returns boolean about given value being even."""
+    return n % 2 == 0
 
-  if n % 2 == 0:
-    return True
-  else:
-    return False
-
-def addNum(numList, num):
-  """Adds the given number to the given list. Does not add duplicate values."""
-
-  numList.append(num)
-
+def addElement(numList, num):
+    """Adds the given number to the list. Does not add duplicate values."""
+    if num not in numList:
+        numList.append(num)
 
 def fibonacciSequence(value):
-  """Returns a list of numbers in the fibonacci sequence up to the given value"""
+    """Returns a list of numbers in the Fibonacci sequence up to the given value."""
+    nums = [1, 2]
+    while nums[-1] + nums[-2] < value:
+        nums.append(nums[-1] + nums[-2])
+    return nums
 
-  nums = [1, 2]
-  size = 2
-  n = nums[size - 1] + nums[size - 2]
+def primeFactors(n):
+    """Returns a list of prime factors of n."""
+    i = 2
+    factors = []
+    while i * i <= n:
+        while n % i == 0:
+            factors.append(i)
+            n //= i
+        i += 1
+    if n > 1:
+        factors.append(n)
+    return factors
 
-  while n < value:
-    addNum(nums, n)
-    size = len(nums)
-    n = nums[size - 1] + nums[size - 2]
-
-  return nums
-
-#Test your new functions in this main
-def main():
-  knownPrimes = [3, 7, 11, 13, 17]
-
-  num = int(input("Enter a number: "))
-
-  if isPrime(num):
-    print("%d is a prime number" %(num))
-
-  if isEven(num):
-    print("%d is an even number" %(num))
-
-
-if __name__ == '__main__':
-    main()
+def isPalindrome(n):
+    """Checks if a number is a palindrome."""
+    return str(n) == str(n)[::-1]

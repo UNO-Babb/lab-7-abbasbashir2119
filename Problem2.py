@@ -1,18 +1,9 @@
-#Problem2.py
-#Project Euler problem 2
-
-from NumberTests import isEven
-from NumberTests import fibonacciSequence
+# Problem2.py
+from NumberTests import isEven, fibonacciSequence
 
 def main():
-  nums = fibonacciSequence(4000001)
-  print (nums)
-  total = 0
-  for fib in nums:
-    if isEven(fib):
-      total = total + fib
-  
-  print(total) # final answer
+    total = sum(fib for fib in fibonacciSequence(4000000) if isEven(fib))
+    print(total)  # Expected: 4613732
 
 if __name__ == '__main__':
-  main()
+    main()
